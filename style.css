@@ -1,92 +1,30 @@
+/* GENERAL RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f3f4f6;
-  color: #333;
+html {
+  scroll-behavior: smooth;
 }
 
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #0d1117; /* Dark terminal background */
+  color: #c9d1d9; /* Light terminal text */
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+/* HEADER */
 header {
-  background-color: #1e3a8a;
-  color: white;
+  background-color: #161b22;
+  color: #58a6ff;
   text-align: center;
   padding: 2rem 1rem;
 }
 
-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.cards-container {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.card {
-  background-color: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h2 {
-  color: #1e3a8a;
-  margin-bottom: 1rem;
-}
-
-.card ul {
-  padding-left: 1.2rem;
-  line-height: 1.6;
-}
-
-.card p, .card li {
-  font-size: 1rem;
-}
-
-.card a {
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.card a:hover {
-  text-decoration: underline;
-}
-
-.card i {
-  margin-right: 8px;
-  color: #0a66c2;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #1e3a8a;
-  color: white;
-  margin-top: 3rem;
-}
-.card i {
-  margin-right: 8px;
-  color: #0a66c2; /* LinkedIn Blue default */
-}
-
-.card a[href*="instagram.com"] i {
-  color: #e1306c; /* Instagram Pink */
-}
 .header-container {
   display: flex;
   align-items: center;
@@ -100,6 +38,282 @@ footer {
   height: 100px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  border: 3px solid #58a6ff;
+  box-shadow: 0 0 15px rgba(88, 166, 255, 0.5);
+  animation: pulse 2s infinite;
+  transition: transform 0.3s ease-in-out;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #79c0ff;
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #58a6ff;
+  width: 0;
+  animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
+  font-weight: bold;
+  color: #58a6ff;
+}
+
+/* CARDS */
+.cards-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+}
+
+.card {
+  background-color: #161b22;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 0 20px rgba(88, 166, 255, 0.1);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.4s ease;
+  border-left: 3px solid #58a6ff;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+}
+
+.card h2 {
+  color: #58a6ff;
+  margin-bottom: 1rem;
+}
+
+.card ul {
+  padding-left: 1.2rem;
+  line-height: 1.7;
+}
+
+.card ul li {
+  margin-bottom: 1rem;
+  color: #c9d1d9;
+}
+
+.card p, .card li {
+  font-size: 1rem;
+}
+
+.card a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+.card i {
+  margin-right: 8px;
+  color: inherit; /* inherit real icon color */
+}
+
+.card a[href*="instagram.com"] i {
+  color: #e1306c;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #161b22;
+  color: #8b949e;
+  margin-top: 3rem;
+}
+
+/* BACKGROUND BUBBLES */
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(120deg, #0d1117, #161b22);
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  background: rgba(88, 166, 255, 0.05);
+  border-radius: 50%;
+  animation: float 20s infinite ease-in;
+}
+
+.bubble:nth-child(1) { left: 10%; width: 30px; height: 30px; animation-duration: 25s; }
+.bubble:nth-child(2) { left: 20%; width: 60px; height: 60px; animation-duration: 22s; }
+.bubble:nth-child(3) { left: 35%; width: 25px; height: 25px; animation-duration: 30s; }
+.bubble:nth-child(4) { left: 50%; width: 50px; height: 50px; animation-duration: 26s; }
+.bubble:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-duration: 24s; }
+.bubble:nth-child(6) { left: 75%; width: 70px; height: 70px; animation-duration: 20s; }
+.bubble:nth-child(7) { left: 85%; width: 40px; height: 40px; animation-duration: 28s; }
+.bubble:nth-child(8) { left: 90%; width: 35px; height: 35px; animation-duration: 21s; }
+.bubble:nth-child(9) { left: 30%; width: 55px; height: 55px; animation-duration: 19s; }
+.bubble:nth-child(10) { left: 5%; width: 45px; height: 45px; animation-duration: 23s; }
+
+/* ANIMATIONS */
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.4);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 15px rgba(88, 166, 255, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(88, 166, 255, 0);
+  }
+}
+.glow-footer {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  color: #58a6ff; /* Soft blue glow */
+  text-align: center;
+  text-shadow:
+    0 0 5px #58a6ff,
+    0 0 10px #58a6ff,
+    0 0 20px #58a6ff,
+    0 0 40px #1e90ff;
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #58a6ff,
+      0 0 10px #58a6ff,
+      0 0 20px #58a6ff,
+      0 0 40px #1e90ff;
+  }
+  50% {
+    text-shadow:
+      0 0 10px #1e90ff,
+      0 0 20px #1e90ff,
+      0 0 30px #58a6ff,
+      0 0 60px #58a6ff;
+  }
+}
+.card p a {
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+/* === Bubble Background === */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  background: radial-gradient(circle, #0f172a, #161b22); /* Optional gradient */
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  animation: float 20s infinite ease-in;
+}
+
+/* Randomize bubble sizes & positions */
+.bubble:nth-child(1) { left: 10%; width: 30px; height: 30px; animation-duration: 25s; }
+.bubble:nth-child(2) { left: 20%; width: 60px; height: 60px; animation-duration: 22s; }
+.bubble:nth-child(3) { left: 35%; width: 25px; height: 25px; animation-duration: 30s; }
+.bubble:nth-child(4) { left: 50%; width: 50px; height: 50px; animation-duration: 26s; }
+.bubble:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-duration: 24s; }
+.bubble:nth-child(6) { left: 75%; width: 70px; height: 70px; animation-duration: 20s; }
+.bubble:nth-child(7) { left: 85%; width: 40px; height: 40px; animation-duration: 28s; }
+.bubble:nth-child(8) { left: 90%; width: 35px; height: 35px; animation-duration: 21s; }
+.bubble:nth-child(9) { left: 30%; width: 55px; height: 55px; animation-duration: 19s; }
+.bubble:nth-child(10) { left: 5%; width: 45px; height: 45px; animation-duration: 23s; }
+
+/* Float animation */
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(0.5);
+    opacity: 0;
+  }
+}
+.glow-footer {
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0ff; /* Bright cyan */
+  text-align: center;
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff;
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      0 0 40px #0ff;
+  }
+  50% {
+    text-shadow:
+      0 0 15px #0ff,
+      0 0 25px #0ff,
+      0 0 35px #0ff,
+      0 0 50px #0ff;
+  }
 }
